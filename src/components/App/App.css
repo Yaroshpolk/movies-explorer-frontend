@@ -1,4 +1,22 @@
 .App {
     margin: 0 auto;
-    max-width: 1280px;
+    max-width: 1140px;
+}
+
+.link {
+    font-size: 13px;
+    line-height: 18px;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity .3s ease-in-out;
+}
+
+.link_active {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.link:hover {
+    opacity: .6;
 }

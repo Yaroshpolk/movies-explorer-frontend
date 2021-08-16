@@ -2,7 +2,6 @@ import './Header.css';
 import React from 'react';
 import { Link, NavLink, Route } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import illustration from '../../images/header-illustration.svg';
 
 function Header() {
     return (
