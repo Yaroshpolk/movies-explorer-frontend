@@ -3,3 +3,9 @@
 
 /* page fonts */
 @import url('./vendor/fonts/Inter/Inter.css');
+
+body {
+    background-color: #202020;
+    color: #fff;
+    font-family: Inter, Calibri, serif;
+}

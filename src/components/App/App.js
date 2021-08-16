@@ -8,10 +8,12 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import Header from "../Header/Header";
 
 function App() {
   return (
     <div className='App'>
+        <Header />
         <Switch>
             <Route exact path='/'>
                 <Main />
