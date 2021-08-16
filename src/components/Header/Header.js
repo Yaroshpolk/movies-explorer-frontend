@@ -24,10 +24,6 @@ function Header() {
                             </div>
                         </nav>
                     </div>
-                    <div className="header__illustr">
-                        <img src={ illustration } alt='Логотип Я.Практикум' className='header__img'/>
-                        <h2 className="header__title">Учебный проект студента факультета Веб-разработки.</h2>
-                    </div>
                 </header>
             </Route>
 
