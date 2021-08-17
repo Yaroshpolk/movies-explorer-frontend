@@ -24,6 +24,7 @@
     font-weight: normal;
     font-size: 50px;
     line-height: 58px;
+    margin-top: 90px;
     letter-spacing: -0.04em;
 }
 
@@ -49,10 +50,11 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    padding: 21px 26px;
+    padding: 21px 0;
     background: #303030;
     border-radius: 10px;
     margin: 0 5px;
+    width: 90px;
 }
 
 .techs__item:first-child {
