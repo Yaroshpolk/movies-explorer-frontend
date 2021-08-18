@@ -51,10 +51,14 @@
     letter-spacing: normal;
 }
 
+.aboutMe__photo-block {
+    width: 270px;
+    height: 327px;
+    margin-left: 49px;
+}
+
 .aboutMe__photo {
     border-radius: 10px;
-    max-width: 270px;
-    height: 327px;
 }
 
 .aboutMe__links {

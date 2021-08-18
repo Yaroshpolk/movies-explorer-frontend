@@ -39,9 +39,12 @@
 .techs__list {
     margin: 100px 0 0 0;
     list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(84px, 84px));
+    justify-content: center;
+    width: 100%;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
     padding: 0;
 }
 
@@ -53,8 +56,6 @@
     padding: 21px 0;
     background: #303030;
     border-radius: 10px;
-    margin: 0 5px;
-    width: 90px;
 }
 
 .techs__item:first-child {

@@ -55,11 +55,6 @@
     font-size: 12px;
     line-height: 16px;
     cursor: pointer;
-    transition: opacity .3s ease-in-out;
-}
-
-.header__signin-btn:hover {
-    opacity: .6;
 }
 
 .header_logged {

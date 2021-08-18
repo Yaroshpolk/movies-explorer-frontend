@@ -1,6 +1,6 @@
 import './Footer.css';
 import React from 'react';
-import { Link, NavLink, Route } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Footer() {
     return(
@@ -10,13 +10,22 @@ function Footer() {
                 <p className="footer__year">@ 2021</p>
                 <ul className="footer__list">
                     <li className="footer__item">
-                        <a href="https://practicum.yandex.ru/" className="link footer__link">Яндекс.Практикум</a>
+                        <Link to={{ pathname: 'https://practicum.yandex.ru/' }} target='_blank' rel='noopener noreferrer'
+                              className='link footer__link'>
+                            Яндекс.Практикум
+                        </Link>
                     </li>
                     <li className="footer__item">
-                        <a href="https://github.com/Yaroshpolk" className="link footer__link">Github</a>
+                        <Link to={{ pathname: 'https://github.com/' }}  target='_blank' rel='noopener noreferrer'
+                              className='link footer__link'>
+                            Github
+                        </Link>
                     </li>
                     <li className="footer__item">
-                        <a href="https://ru-ru.facebook.com/" className="link footer__link">Facebook</a>
+                        <Link to={{ pathname: 'https://ru-ru.facebook.com/' }} target='_blank' rel='noopener noreferrer'
+                              className='link footer__link'>
+                            Facebook
+                        </Link>
                     </li>
                 </ul>
             </nav>

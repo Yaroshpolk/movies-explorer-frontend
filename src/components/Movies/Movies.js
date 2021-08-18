@@ -1,10 +1,16 @@
 import './Movies.css';
 import React from 'react';
+import SearchForm from './SearchForm/SearchForm';
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+
 
 function Movies() {
 
     return (
-        <h1>Фильмы</h1>
+        <div className='content'>
+            <SearchForm />
+            <MoviesCardList />
+        </div>
     );
 }
 

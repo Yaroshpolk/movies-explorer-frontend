@@ -14,11 +14,11 @@ function Header() {
                         </Link>
                         <nav className='header__nav'>
                             <div className="header__links">
-                                <NavLink to='signup' className='header__link' activeClassName='header__link_active'>
+                                <NavLink to='/signup' className='header__link' activeClassName='header__link_active'>
                                     Регистрация
                                 </NavLink>
-                                <NavLink to='signup' className='header__link' activeClassName='header__link_active'>
-                                    <button className='header__signin-btn'>Войти</button>
+                                <NavLink to='/signin' className='header__link' activeClassName='header__link_active'>
+                                    <button className='btn header__signin-btn'>Войти</button>
                                 </NavLink>
                             </div>
                         </nav>
