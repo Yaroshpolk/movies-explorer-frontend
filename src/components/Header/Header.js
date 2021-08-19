@@ -10,7 +10,7 @@ function Header() {
             <Route exact path='/'>
                 <header className='header'>
                     <div className="header__menu">
-                        <Link to='/'>
+                        <Link to='/' className='logo-container'>
                             <img src={ logo } alt='Логотип' className='logo'/>
                         </Link>
                         <Navigation />

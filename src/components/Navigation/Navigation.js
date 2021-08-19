@@ -5,6 +5,10 @@ import { Link, NavLink } from "react-router-dom";
 function Navigation() {
     const [isLogged, setIsLogged] = React.useState(false);
 
+    React.useState(() => {
+        setIsLogged(true);
+    })
+
     return (
         <nav className='navigation'>
             <div className="navigation__links">

@@ -6,7 +6,6 @@
     display: block;
     width: 38px;
     height: 38px;
-    margin-right: 44px;
 }
 
 .header__menu {
@@ -19,4 +18,9 @@
 
 .header_logged {
     background: inherit;
+}
+
+.logo-container {
+    margin-right: 44px;
+    width: 38px;
 }

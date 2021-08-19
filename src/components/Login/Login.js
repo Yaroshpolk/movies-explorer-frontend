@@ -8,7 +8,7 @@ function Login() {
     return (
         <div className='content'>
             <section className="login">
-                <Link to='/'>
+                <Link to='/' className='logo-container'>
                     <img src={ logo } alt='Логотип' className='logo'/>
                 </Link>
                 <h2 className='login__title'>Рады видеть!</h2>
