@@ -4,7 +4,9 @@ import React from 'react';
 function Profile() {
 
     return (
-        <h1>Профиль пользователя</h1>
+        <div className='content'>
+
+        </div>
     );
 }
 

@@ -3,7 +3,7 @@ import './Navigation.css';
 import { Link, NavLink } from "react-router-dom";
 
 function Navigation() {
-    const [isLogged, setIsLogged] = React.useState(true);
+    const [isLogged, setIsLogged] = React.useState(false);
 
     return (
         <nav className='navigation'>

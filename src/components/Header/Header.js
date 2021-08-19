@@ -1,6 +1,6 @@
 import './Header.css';
 import React from 'react';
-import { Link, NavLink, Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import Navigation from "../Navigation/Navigation";
 
@@ -11,7 +11,7 @@ function Header() {
                 <header className='header'>
                     <div className="header__menu">
                         <Link to='/'>
-                            <img src={ logo } alt='Логотип' className='header__logo'/>
+                            <img src={ logo } alt='Логотип' className='logo'/>
                         </Link>
                         <Navigation />
                     </div>
