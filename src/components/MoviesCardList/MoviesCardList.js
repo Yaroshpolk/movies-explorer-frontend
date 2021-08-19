@@ -2,27 +2,29 @@ import React from "react";
 import './MoviesCardList.css';
 import MoviesCard from "./MoviesCard/MoviesCard";
 
-function MoviesCardList() {
-
-    const addToFavorite = (evt) => {
-        const btn = evt.target;
-
-        btn.classList.toggle('movies__card-btn_active');
-    }
+function MoviesCardList(props) {
 
     return(
         <section className="movies">
             <div className="movies__list">
-                <MoviesCard onBtnClick={addToFavorite}/>
-                <MoviesCard onBtnClick={addToFavorite}/>
-                <MoviesCard onBtnClick={addToFavorite}/>
-                <MoviesCard onBtnClick={addToFavorite}/>
-                <MoviesCard onBtnClick={addToFavorite}/>
-                <MoviesCard onBtnClick={addToFavorite}/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
+                <MoviesCard onBtnClick={props.btnAction} btnClass={ props.btnClass }/>
             </div>
-            <div className="movies__more">
-                <button className="btn movies__more-btn">Ещё</button>
-            </div>
+            {props.moreBtn && (
+                <div className="movies__more">
+                    <button className="btn movies__more-btn">Ещё</button>
+                </div>
+            )}
         </section>
     );
 }

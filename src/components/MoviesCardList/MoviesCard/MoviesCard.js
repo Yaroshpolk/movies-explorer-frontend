@@ -10,7 +10,7 @@ function MoviesCard(props) {
                     <p className="movies__card-title">33 слова о дизайне</p>
                     <span className="movies__card-time">1ч 47м</span>
                 </div>
-                <button className="btn movies__card-btn" onClick={props.onBtnClick}>
+                <button className={`btn movies__card-btn movies__card-btn_${props.btnClass}`} onClick={props.onBtnClick}>
                 </button>
             </div>
             <img src={ img } alt="Обложка карточки" className="movies__card-img"/>

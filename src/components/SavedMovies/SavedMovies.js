@@ -1,10 +1,15 @@
 import './SavedMovies.css';
 import React from 'react';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function SavedMovies() {
 
     return (
-        <h1>Сохранённые фильмы</h1>
+        <div className='content'>
+            <SearchForm />
+            <MoviesCardList btnClass={'del'}/>
+        </div>
     );
 }
 

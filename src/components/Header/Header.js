@@ -2,6 +2,7 @@ import './Header.css';
 import React from 'react';
 import { Link, NavLink, Route } from 'react-router-dom';
 import logo from '../../images/logo.svg';
+import Navigation from "../Navigation/Navigation";
 
 function Header() {
     return (
@@ -12,16 +13,7 @@ function Header() {
                         <Link to='/'>
                             <img src={ logo } alt='Логотип' className='header__logo'/>
                         </Link>
-                        <nav className='header__nav'>
-                            <div className="header__links">
-                                <NavLink to='/signup' className='header__link' activeClassName='header__link_active'>
-                                    Регистрация
-                                </NavLink>
-                                <NavLink to='/signin' className='header__link' activeClassName='header__link_active'>
-                                    <button className='btn header__signin-btn'>Войти</button>
-                                </NavLink>
-                            </div>
-                        </nav>
+                        <Navigation />
                     </div>
                 </header>
             </Route>
@@ -32,16 +24,7 @@ function Header() {
                         <Link to='/'>
                             <img src={ logo } alt='Логотип' className='header__logo'/>
                         </Link>
-                        <nav className='header__nav'>
-                            <div className="header__links">
-                                <NavLink to='signup' className='header__link' activeClassName='header__link_active'>
-                                    Регистрация
-                                </NavLink>
-                                <NavLink to='signup' className='header__link' activeClassName='header__link_active'>
-                                    <button className='header__signin-btn'>Войти</button>
-                                </NavLink>
-                            </div>
-                        </nav>
+                        <Navigation />
                     </div>
                 </header>
             </Route>
