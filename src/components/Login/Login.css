@@ -1,0 +1,41 @@
+.login {
+    padding: 0 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 396px;
+    margin: 70px auto;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login__form .submit {
+    margin-top: 179px;
+    padding: 15px 178px;
+}
+
+.login__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 40px 0;
+}
+
+.logo {
+    width: auto;
+}
+
+@media screen and (max-width: 320px){
+    .login .logo-container {
+        margin: 0 auto;
+    }
+
+    .login .login__title {
+        text-align: center;
+    }
+}

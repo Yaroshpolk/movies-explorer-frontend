@@ -1,0 +1,60 @@
+.movies__card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    background: #222222;
+    width: 100%;
+}
+
+.movies__card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 14px;
+    align-items: center;
+}
+
+.movies__card-title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    margin: 0 0 9px 0;
+}
+
+.movies__card-time {
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    color: #8B8B8B;
+}
+
+.movies__card-btn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: inherit;
+    border-radius: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.movies__card-img {
+    object-fit: cover;
+    width: inherit;
+    display: block;
+}
+
+.movies__card-btn_addToFav {
+    background-image: url('../../../images/btn-flag.svg');
+}
+
+.movies__card-btn_del {
+    background-image: url('../../../images/btn-delete.svg');
+}
+
+.movies__card-btn_active {
+    background-image: url('../../../images/btn-flag-active.svg');
+}
