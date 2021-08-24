@@ -68,6 +68,7 @@
 
 .aboutProject__timing-item:first-child .aboutProject__timing-bar {
     background: #3DDC84;
+    color: #000;
 }
 
 .aboutProject__timing-item:last-child .aboutProject__timing-bar {
@@ -80,4 +81,64 @@
     font-size: 14px;
     line-height: 17px;
     color: #8B8B8B;
+}
+
+@media screen and (max-width: 786px){
+    .aboutProject {
+        padding: 90px 50px;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .aboutProject__timing-item:first-child {
+        max-width: 150px;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .aboutProject__timing-item:first-child {
+        max-width: 100px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .aboutProject {
+        padding: 70px 18px;
+    }
+
+    .aboutProject__title {
+        margin-top: 0;
+    }
+
+    .aboutProject__descriptions {
+        flex-direction: column;
+        margin-top: 60px;
+    }
+
+    .aboutProject__description {
+        margin-bottom: 60px;
+    }
+
+    .aboutProject__description:first-child {
+        margin-right: 0;
+    }
+
+    .aboutProject__description-title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .aboutProject__description-text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .aboutProject__timing-bar{
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .aboutProject__timing-txt {
+        font-size: 11px;
+        line-height: 13px;
+    }
 }

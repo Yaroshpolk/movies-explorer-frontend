@@ -21,7 +21,7 @@ function Header() {
             <Route path={['/movies', '/saved-movies', '/profile']}>
                 <header className='header header_logged'>
                     <div className="header__menu">
-                        <Link to='/'>
+                        <Link to='/' className='logo-container'>
                             <img src={ logo } alt='Логотип' className='header__logo'/>
                         </Link>
                         <Navigation />

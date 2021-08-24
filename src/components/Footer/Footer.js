@@ -4,7 +4,7 @@ import {Link, Route} from "react-router-dom";
 
 function Footer() {
     return(
-        <Route exact path={['/', '/movies', '/saved-movies', '/profile']}>
+        <Route exact path={['/', '/movies', '/saved-movies']}>
             <footer className="footer">
                 <p className="footer__message">Учебный проект Яндекс.Практикум х BeatFilm.</p>
                 <nav className="footer__nav">

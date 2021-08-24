@@ -13,7 +13,7 @@ function PageNotFound() {
                     <h1 className="message__title">404</h1>
                     <p className="message__subtitle">Страница не найдена</p>
                 </div>
-                <button className="btn" onClick={history.goBack}>Назад</button>
+                <button className="btn btn-404" onClick={history.goBack}>Назад</button>
             </div>
         </div>
     );

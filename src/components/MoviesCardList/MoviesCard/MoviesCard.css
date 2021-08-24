@@ -1,9 +1,9 @@
 .movies__card {
-    max-height: 271px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
     background: #222222;
+    width: 100%;
 }
 
 .movies__card-header {
@@ -39,6 +39,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.movies__card-img {
+    object-fit: cover;
+    width: inherit;
+    display: block;
 }
 
 .movies__card-btn_addToFav {

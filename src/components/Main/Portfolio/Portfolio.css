@@ -38,3 +38,39 @@
 .portfolio__item-name {
     margin: 19px 0 20px 0;
 }
+
+@media screen and (max-width: 786px){
+    .portfolio {
+        padding: 0 50px 90px 50px;
+    }
+
+    .portfolio__item-name {
+        font-size: 28px;
+        line-height: 50px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .portfolio {
+        padding: 0 14px 70px 14px;
+    }
+
+    .portfolio__title {
+        margin-bottom: 40px;
+    }
+
+    .portfolio__link {
+        align-items: center;
+    }
+
+    .portfolio__item-name {
+        font-size: 18px;
+        line-height: 28px;
+        margin: 19px 0;
+    }
+
+    .portfolio__item-arrow {
+        width: 18px;
+        height: 28px;
+    }
+}

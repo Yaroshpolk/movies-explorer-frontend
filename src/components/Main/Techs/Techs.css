@@ -65,3 +65,38 @@
 .techs__item:last-child {
     margin-right: 0;
 }
+
+@media screen and (max-width: 786px){
+    .techs__item {
+        font-size: 12px;
+    }
+
+    .techs {
+        padding: 90px 50px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .techs {
+        padding: 70px 18px;
+    }
+
+    .techs__subtitle {
+        margin-top: 60px;
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .techs__description {
+        margin-top: 24px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .techs__list {
+        margin: 50px auto;
+        max-width: 178px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+

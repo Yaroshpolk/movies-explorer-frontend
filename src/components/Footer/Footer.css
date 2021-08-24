@@ -43,3 +43,46 @@
 .footer__item {
     margin-left: 20px;
 }
+
+@media screen and (max-width: 768px){
+    .footer {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .footer {
+        padding: 0 18px;
+    }
+
+    .footer__message {
+        margin-top: 79px;
+    }
+
+    .footer__nav {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .footer__list {
+        flex-direction: column;
+    }
+
+    .footer__item {
+        margin-left: 0;
+        margin-bottom: 12px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .footer__item:last-child {
+        margin-bottom: 0;
+    }
+
+    .footer__year {
+        margin-top: 30px;
+        margin-bottom: 0;
+        color: #8B8B8B;
+    }
+}

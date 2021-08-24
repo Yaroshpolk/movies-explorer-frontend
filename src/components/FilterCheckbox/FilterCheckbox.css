@@ -60,3 +60,14 @@
     box-sizing: border-box;
     content: '';
 }
+
+@media screen and (max-width: 635px){
+    .filter-checkbox {
+        margin: 46px 86px;
+        padding: 0;
+        border: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}

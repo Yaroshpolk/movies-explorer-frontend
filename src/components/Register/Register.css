@@ -20,3 +20,13 @@
     line-height: 29px;
     margin: 40px 0;
 }
+
+@media screen and (max-width: 320px){
+    .registration .logo-container {
+        margin: 0 auto;
+    }
+
+    .registration .registration__title {
+        text-align: center;
+    }
+}

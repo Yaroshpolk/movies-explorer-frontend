@@ -29,3 +29,13 @@
 .logo {
     width: auto;
 }
+
+@media screen and (max-width: 320px){
+    .login .logo-container {
+        margin: 0 auto;
+    }
+
+    .login .login__title {
+        text-align: center;
+    }
+}

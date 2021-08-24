@@ -12,7 +12,7 @@
     font-weight: normal;
     font-size: 140px;
     line-height: 169px;
-    margin: 0 0 5px 0;
+    margin: 250px 0 5px 0;
 }
 
 .message__subtitle {
@@ -23,10 +23,16 @@
     margin: 0;
 }
 
-.btn {
+.btn-404 {
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     color: #4285F4;
     background-color: inherit;
+}
+
+@media screen and (max-width: 340px){
+    .pageNotFound {
+        max-width: none;
+    }
 }

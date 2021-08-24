@@ -55,7 +55,12 @@
     border: 0;
     padding: 15px;
     margin-top: 10px;
-    outline: none;
+    outline: 0;
+    transition: box-shadow .3s;
+}
+
+.input:focus {
+    box-shadow: 0 0 3px 2px #4285F4;
 }
 
 .input_error {
@@ -120,4 +125,11 @@
 
 .field__input-error_visible {
     display: block;
+}
+
+
+@media screen and (max-width: 786px){
+    .field .field__preinput-span {
+        margin: 0;
+    }
 }

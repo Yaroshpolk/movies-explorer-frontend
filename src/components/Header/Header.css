@@ -24,3 +24,19 @@
     margin-right: 44px;
     width: 38px;
 }
+
+@media screen and (max-width: 786px){
+    .header__menu {
+        padding: 18px 30px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .header__menu {
+        padding: 18px 14px;
+    }
+}
+
+@media screen and (max-width: 450px){
+
+}
