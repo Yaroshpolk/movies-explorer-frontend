@@ -7,7 +7,7 @@ import formValidator from '../../utils/FormValidator';
 function Register(props) {
 
     const { values, handleChange, resetForm, errors, isValid } = formValidator();
-    const {name, email, password} = values;
+    const { name, email, password } = values;
 
     function handleSubmit(evt) {
         evt.preventDefault();

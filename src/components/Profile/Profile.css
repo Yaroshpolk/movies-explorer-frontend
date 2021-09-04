@@ -41,7 +41,7 @@
 
 .profile__field {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #424242;
@@ -52,12 +52,25 @@
     border-bottom: 0;
 }
 
+.input-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .profile__btn {
     background-color: inherit;
     font-weight: normal;
     font-size: 13px;
     line-height: 16px;
     color: #fff;
+}
+
+.profile__btn_disabled {
+    pointer-events: none;
+    opacity: .6;
+    transition: opacity .3s;
 }
 
 .form__caption {

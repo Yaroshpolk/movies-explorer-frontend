@@ -21,15 +21,12 @@ function App() {
 
     const [currentUser, setCurrentUser] = React.useState({});
     const [loggedIn, setLoggedIn] = React.useState(false);
-    const [userData, setUserData] = React.useState({
-        name: '',
-        email: '',
-    })
+    const [userData, setUserData] = React.useState({})
 
     const history = useHistory();
 
     React.useEffect(() => {
-        checkToken()
+        checkToken();
     }, [loggedIn])
 
     const handleRegister = ({name, email, password}, onSuccess) => {
@@ -38,17 +35,7 @@ function App() {
                 alert('Вы успешно зарегистрировались');
                 history.push('/signin');
                 onSuccess();
-                mainApi.login({email, password})
-                    .then(res => {
-                        alert('Вы успешно авторизовались')
-                        setCurrentUser(res);
-                        setLoggedIn(true);
-                        onSuccess();
-                        history.push('/movies');
-                    })
-                    .catch(err => {
-                        alert(err)
-                    })
+                handleLogin({email, password}, onSuccess);
             })
             .catch(err => {
                 alert(err)
@@ -77,29 +64,34 @@ function App() {
         history.push('/');
     }
 
+    const getUserInfo = () => {
+        mainApi.getUserInfo()
+            .then(data => {
+                setUserData(data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
     const checkToken = () => {
         const jwt = localStorage.getItem('jwt');
         if (jwt) {
-            mainApi.getUserInfo()
-                .then(data => {
-                    setLoggedIn(true);
-                    setUserData(data);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+            getUserInfo();
+            setLoggedIn(true);
         }
     }
 
     const updateUserInfo = ({email, name}, onSuccess) => {
-        mainApi.updateUserInfo({email, name})
+        mainApi.updateUserInfo({name, email})
             .then(res => {
                 setCurrentUser({
                     ...currentUser,
                     name: res.name,
                     email: res.email
                 })
-                alert('Профиль успешно редактирован')
+                alert('Профиль успешно редактирован');
+                getUserInfo();
                 onSuccess();
             })
             .catch(err => {
