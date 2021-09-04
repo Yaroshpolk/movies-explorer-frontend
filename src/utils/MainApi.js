@@ -52,13 +52,13 @@ class MainApi {
             .then(this._checkResponse);
     }
 
-    login = ({name, email}) => {
+    login = ({email, password}) => {
         return fetch(`${this._apiUrl}/signin`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                name,
                 email,
+                password,
             })
         })
             .then(this._checkResponse);
@@ -88,7 +88,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-    apiUrl: 'https://yar.movies.api.nomoredomains.monster/api',
+    apiUrl: 'http://localhost:3001/api/',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': '',

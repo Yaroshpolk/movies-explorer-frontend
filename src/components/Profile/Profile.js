@@ -1,28 +1,61 @@
 import './Profile.css';
 import React from 'react';
+import formValidator from '../../utils/FormValidator';
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
-function Profile() {
+function Profile(props) {
+
+    const { values, handleChange, resetForm, errors, isValid } = formValidator();
+    const { email, name } = values;
+    const context = React.useContext(CurrentUserContext);
+
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        console.log(values)
+        isValid && props.updateUserInfo({ email, name }, () => {
+            resetForm();
+        })
+    }
 
     return (
         <div className='content'>
             <div className="profile">
                 <div className="profile__title">Привет, Виталий!</div>
-                <form className="profile__form" name='profileForm'>
+                <form className="profile__form" name='profileForm' onSubmit={handleSubmit} noValidate>
                     <div className="fields">
-                        <div className="profile__field">
+                        <label className={`field ${errors.email && "field_invalid"} profile__field`}>
                             <p className="form__caption">Имя</p>
-                            <input className="profile__input" id="name" type="text" placeholder=""
-                                   name="name" minLength='2' value='Виталий' required  />
-                        </div>
-                        <div className="profile__field">
+                            <input
+                                className="profile__input"
+                                id="name" type="text"
+                                placeholder=""
+                                name="name"
+                                minLength='2'
+                                required
+                                value={context.name || ''}
+                                onChange={handleChange}/>
+                        </label>
+                        <span className="field__input-error">{errors.name}</span>
+                        <label className={`field ${errors.email && "field_invalid"} profile__field`}>
                             <p className="form__caption">E-mail</p>
-                            <input className="profile__input" id="email" type="Email" placeholder=""
-                                   name="email" minLength='2' value='pochta@yandex.ru' required  />
-                        </div>
+                            <input className="profile__input"
+                                   id="email"
+                                   type="Email"
+                                   placeholder=""
+                                   name="email"
+                                   minLength='2'
+                                   required
+                                   value={context.email || ''}
+                                   onChange={handleChange} />
+                            <span className="field__input-error">{errors.email}</span>
+                        </label>
+                        <span className="field__input-error">{errors.email}</span>
                     </div>
                     <div className="profile__controls">
                         <input type="submit" className="btn profile__btn" value='Редактировать'/>
-                        <button className='btn profile__btn'>Выйти из аккаунта</button>
+                        <button
+                            className='btn profile__btn'
+                            onClick={props.handleLogout}>Выйти из аккаунта</button>
                     </div>
                 </form>
             </div>
