@@ -11,7 +11,6 @@ function Login(props) {
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        console.log(values)
         isValid && props.handleLogin({ email, password }, () => {
             resetForm();
         })

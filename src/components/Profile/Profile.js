@@ -1,17 +1,16 @@
 import './Profile.css';
 import React from 'react';
 import formValidator from '../../utils/FormValidator';
-import {CurrentUserContext} from "../../contexts/CurrentUserContext";
+import {AppContext} from "../../contexts/AppContext";
 
 function Profile(props) {
 
     const { values, handleChange, resetForm, errors, isValid } = formValidator();
     const { email, name } = values;
-    const context = React.useContext(CurrentUserContext);
+    const context = React.useContext(AppContext);
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        console.log(values)
         isValid && props.updateUserInfo({ email, name }, () => {
             resetForm();
         })
@@ -20,7 +19,7 @@ function Profile(props) {
     return (
         <div className='content'>
             <div className="profile">
-                <div className="profile__title">Привет, Виталий!</div>
+                <div className="profile__title">Привет, {context.userData.name}!</div>
                 <form className="profile__form" name='profileForm' onSubmit={handleSubmit} noValidate>
                     <div className="fields">
                         <label className={`field ${errors.email && "field_invalid"} profile__field`}>
@@ -28,11 +27,11 @@ function Profile(props) {
                             <input
                                 className="profile__input"
                                 id="name" type="text"
-                                placeholder=""
+                                placeholder={context.userData.name}
                                 name="name"
                                 minLength='2'
                                 required
-                                value={context.name || ''}
+                                value={name || ''}
                                 onChange={handleChange}/>
                         </label>
                         <span className="field__input-error">{errors.name}</span>
@@ -41,11 +40,11 @@ function Profile(props) {
                             <input className="profile__input"
                                    id="email"
                                    type="Email"
-                                   placeholder=""
+                                   placeholder={context.userData.email}
                                    name="email"
                                    minLength='2'
                                    required
-                                   value={context.email || ''}
+                                   value={email || ''}
                                    onChange={handleChange} />
                             <span className="field__input-error">{errors.email}</span>
                         </label>

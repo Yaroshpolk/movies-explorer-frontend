@@ -21,12 +21,22 @@ function App() {
 
     const [currentUser, setCurrentUser] = React.useState({});
     const [loggedIn, setLoggedIn] = React.useState(false);
+    const [userData, setUserData] = React.useState({
+        name: '',
+        email: '',
+    })
+
     const history = useHistory();
+
+    React.useEffect(() => {
+        checkToken()
+    }, [loggedIn])
 
     const handleRegister = ({name, email, password}, onSuccess) => {
         mainApi.register({name, email, password})
             .then(res => {
-                alert('Вы успешно зарегистрировались')
+                alert('Вы успешно зарегистрировались');
+                history.push('/signin');
                 onSuccess();
                 mainApi.login({email, password})
                     .then(res => {
@@ -47,22 +57,38 @@ function App() {
 
     const handleLogin = ({email, password}, onSuccess) => {
         mainApi.login({email, password})
-            .then(res => {
-                alert('Вы успешно авторизовались')
-                setCurrentUser(res);
+            .then(({token}) => {
+                setCurrentUser(token);
                 setLoggedIn(true);
+                localStorage.setItem('jwt', token);
                 onSuccess();
-                history.push('/movies');
+                alert('Вы успешно авторизовались!');
+                history.push('/movies')
             })
             .catch(err => {
                 console.log(err)
-                alert(err)
             })
     }
 
     const handleLogout = () => {
+        localStorage.removeItem('jwt');
         setCurrentUser({});
         setLoggedIn(false);
+        history.push('/');
+    }
+
+    const checkToken = () => {
+        const jwt = localStorage.getItem('jwt');
+        if (jwt) {
+            mainApi.getUserInfo()
+                .then(data => {
+                    setLoggedIn(true);
+                    setUserData(data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
     }
 
     const updateUserInfo = ({email, name}, onSuccess) => {
@@ -84,7 +110,10 @@ function App() {
 
   return (
       <CurrentUserContext.Provider value={currentUser}>
-          <AppContext.Provider value={{loggedIn: loggedIn}}>
+          <AppContext.Provider value={{
+              loggedIn: loggedIn,
+              userData: userData,
+          }}>
               <div className='App'>
                   <Header />
                   <Switch>

@@ -65,7 +65,7 @@ class MainApi {
     }
 
     getUserInfo = () => {
-        return fetch(`${this._apiUrl}/me`,
+        return fetch(`${this._apiUrl}/users/me`,
             {
                 method: 'GET',
                 headers: this._headers,
@@ -74,7 +74,7 @@ class MainApi {
     }
 
     updateUserInfo = ({name, email}) => {
-        return fetch(`${this._apiUrl}/me`,
+        return fetch(`${this._apiUrl}/users/me`,
             {
                 method: 'PATCH',
                 headers: this._headers,
@@ -91,7 +91,7 @@ const mainApi = new MainApi({
     apiUrl: 'http://localhost:3001/api/',
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': '',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     }
 });
 
