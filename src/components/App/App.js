@@ -30,6 +30,7 @@ function App() {
     const [shortMovies, setShortMovies] = React.useState(false);
     const [savedShortMovies, setSavedShortMovies] = React.useState(false);
     const [isPopupOpened, setIsPopupOpened] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
     const [popupInfo, setPopupInfo] = React.useState({
         title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
         type: 'error',
@@ -128,12 +129,16 @@ function App() {
     const getUserInfo = () => {
         mainApi.getUserInfo()
             .then(data => {
+                setIsLoading(true);
                 setUserData(data);
             })
             .catch(err => {
                 setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
                     type: 'error',})
                 setIsPopupOpened(true)
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }
 
@@ -157,6 +162,7 @@ function App() {
     const updateUserInfo = ({email, name}, onSuccess) => {
         mainApi.updateUserInfo({name, email})
             .then(res => {
+                setIsLoading(true);
                 setCurrentUser({
                     ...currentUser,
                     name: res.name,
@@ -173,10 +179,14 @@ function App() {
                     type: 'error',})
                 setIsPopupOpened(true)
             })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }
 
     const getMovies = (key) => {
         if (loggedIn) {
+            setIsLoading(true);
             moviesApi.getCards()
                 .then(data => {
                     localStorage.setItem('movies', JSON.stringify(data));
@@ -186,6 +196,9 @@ function App() {
                     setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
                         type: 'error',})
                     setIsPopupOpened(true)
+                })
+                .finally(() => {
+                    setIsLoading(false);
                 })
         }
     }
@@ -328,6 +341,7 @@ function App() {
               userData: userData,
               movies: movies,
               savedMovies: savedMovies,
+              isLoading: isLoading
           }}>
               <div className='App'>
                   <Header />
