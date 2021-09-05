@@ -17,7 +17,8 @@ import mainApi from "../../utils/MainApi";
 import { useHistory } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import moviesApi from "../../utils/MoviesApi";
-import {SHORT_MOVIE} from "../../utils/constants";
+import {SHORT_MOVIE, ESC_CODE} from "../../utils/constants";
+import Popup from '../Popup/Popup';
 
 function App() {
 
@@ -28,11 +29,19 @@ function App() {
     const [savedMovies, setSavedMovies] = React.useState([]);
     const [shortMovies, setShortMovies] = React.useState(false);
     const [savedShortMovies, setSavedShortMovies] = React.useState(false);
+    const [isPopupOpened, setIsPopupOpened] = React.useState(false);
+    const [popupInfo, setPopupInfo] = React.useState({
+        title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+        type: 'error',
+    })
 
     const history = useHistory();
 
     React.useEffect(() => {
-        setMovies([]);
+        setPopupInfo({
+            title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+            type: 'error',
+        })
         checkToken();
         mainApi.getSavedMovies()
             .then(movies => {
@@ -40,20 +49,52 @@ function App() {
                 localStorage.setItem('savedMovies', JSON.stringify(movies))
             })
             .catch(err => {
-                console.log(err)
+                setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+                    type: 'error',})
+                setIsPopupOpened(true)
             })
     }, [loggedIn])
+
+    const closePopup = () => {
+        setIsPopupOpened(false);
+    }
+
+    const openPopup = () => {
+        setIsPopupOpened(true);
+    }
+
+    React.useEffect(() => {
+
+        function handleEscClose(evt) {
+            evt.key === ESC_CODE && closePopup();
+        }
+
+        function handleOverlayClose(evt) {
+            evt.target.classList.contains('popup-window_opened') && closePopup();
+        }
+
+        window.addEventListener('keydown', handleEscClose);
+        window.addEventListener('click', handleOverlayClose);
+
+        return () => {
+            window.removeEventListener('click', handleOverlayClose);
+            window.removeEventListener('keydown', handleEscClose);
+        };
+    }, []);
 
     const handleRegister = ({name, email, password}, onSuccess) => {
         mainApi.register({name, email, password})
             .then(res => {
-                alert('Вы успешно зарегистрировались');
+                setPopupInfo({title: 'Вы успешно зарегистрированы',
+                    type: '',})
                 history.push('/signin');
                 onSuccess();
                 handleLogin({email, password}, onSuccess);
             })
             .catch(err => {
-                alert(err)
+                setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+                    type: 'error',})
+                setIsPopupOpened(true)
             })
     }
 
@@ -64,11 +105,14 @@ function App() {
                 setLoggedIn(true);
                 localStorage.setItem('jwt', token);
                 onSuccess();
-                alert('Вы успешно авторизовались!');
+                setPopupInfo({title: 'Вы успешно авторизовались',
+                    type: '',})
                 history.push('/movies')
             })
             .catch(err => {
-                console.log(err)
+                setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+                    type: 'error',})
+                setIsPopupOpened(true)
             })
     }
 
@@ -85,10 +129,11 @@ function App() {
         mainApi.getUserInfo()
             .then(data => {
                 setUserData(data);
-                console.log(data)
             })
             .catch(err => {
-                console.log(err);
+                setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+                    type: 'error',})
+                setIsPopupOpened(true)
             })
     }
 
@@ -117,13 +162,16 @@ function App() {
                     name: res.name,
                     email: res.email
                 })
-                alert('Профиль успешно редактирован');
+                setPopupInfo({title: 'Ваш профиль успешно отредактирован',
+                    type: '',})
+                setIsPopupOpened(true)
                 getUserInfo();
                 onSuccess();
             })
             .catch(err => {
-                console.log(err)
-                alert(err)
+                setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+                    type: 'error',})
+                setIsPopupOpened(true)
             })
     }
 
@@ -135,14 +183,18 @@ function App() {
                     searchMovies(key)
                 })
                 .catch(err => {
-                    console.log(err)
+                    setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+                        type: 'error',})
+                    setIsPopupOpened(true)
                 })
         }
     }
     
     const searchMovies = (key) => {
       if (!key) {
-          alert('Необходимо ввести ключевое слово');
+          setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+              type: 'error',})
+          setIsPopupOpened(true)
           return;
       }
       const moviesList = JSON.parse(localStorage.getItem('movies'));
@@ -163,11 +215,12 @@ function App() {
 
     function searchSavedMovies(key) {
         if (!key) {
-            alert('Необходимо ввести ключевое слово');
+            setPopupInfo({title: 'Необходимо ввести ключевое слово',
+                type: 'error',})
+            setIsPopupOpened(true)
             return;
         }
         const savedMoviesList = JSON.parse(localStorage.getItem('savedMovies'));
-        console.log(key)
         const searchSavedMoviesList = savedMoviesList.filter((movie) => {
             const nameEN = movie.nameEN ? movie.nameEN : movie.nameRU;
             return (
@@ -213,7 +266,9 @@ function App() {
                 localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
             })
             .catch((err) => {
-                console.log(err);
+                setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+                    type: 'error',})
+                setIsPopupOpened(true)
             });
     }
 
@@ -229,7 +284,9 @@ function App() {
                 localStorage.setItem('savedMovies', JSON.stringify(newSavedMovies));
             })
             .catch((err) => {
-                console.log(err);
+                setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+                    type: 'error',})
+                setIsPopupOpened(true)
             });
     }
 
@@ -242,7 +299,9 @@ function App() {
                 localStorage.setItem('savedMovies', JSON.stringify(newSavedMovies));
             })
             .catch((err) => {
-                console.log(err);
+                setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
+                    type: 'error',})
+                setIsPopupOpened(true)
             });
     }
 
@@ -314,6 +373,12 @@ function App() {
                       </Route>
                   </Switch>
                   <Footer />
+                  <Popup
+                  onClose={closePopup}
+                  type={popupInfo.type}
+                  isOpen={isPopupOpened}
+                  title={popupInfo.title}
+                  />
               </div>
           </AppContext.Provider>
       </CurrentUserContext.Provider>

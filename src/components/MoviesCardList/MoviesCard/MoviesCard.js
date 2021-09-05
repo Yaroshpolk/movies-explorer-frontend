@@ -23,6 +23,7 @@ function MoviesCard(props) {
         props.onMovieDislike(data);
     }
 
+
     return(
         <div className="movies__card">
             <div className="movies__card-header">
@@ -34,7 +35,7 @@ function MoviesCard(props) {
                         onClick={props.btnClass === 'addToFav' ? (isLiked ? handleDislike : handleLike) : handleDislike}>
                 </button>
             </div>
-            <a href={data.trailerLink} className='link'>
+            <a href={props.btnClass === 'addToFav' ? data.trailerLink : data.trailer} className='link'>
                 <img src={props.btnClass === 'addToFav' ? imgLink : data.image} alt={data.name} className="movies__card-img"/>
             </a>
         </div>
