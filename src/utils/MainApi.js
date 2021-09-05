@@ -94,7 +94,7 @@ function getHeaders() {
 }
 
 const mainApi = new MainApi({
-    apiUrl: 'https://yar.movies.api.nomoredomains.monster/',
+    apiUrl: 'https://yar.movies.api.nomoredomains.monster/api',
 });
 
 export default mainApi;
