@@ -1,7 +1,6 @@
 class MainApi {
-    constructor({apiUrl, headers}) {
+    constructor({apiUrl}) {
         this._apiUrl = apiUrl;
-        this._headers = headers;
     };
 
     _checkResponse = (res) => {
@@ -11,7 +10,7 @@ class MainApi {
     getSavedMovies = () => {
         return fetch(`${this._apiUrl}/movies`, {
             method: 'GET',
-            headers: this._headers,
+            headers: getHeaders(),
         })
             .then(this._checkResponse);
     };
@@ -22,7 +21,7 @@ class MainApi {
         ) => {
         return fetch(`${this._apiUrl}/movies`, {
             method: 'POST',
-            headers: this._headers,
+            headers: getHeaders(),
             body: JSON.stringify(
                 country, director, duration, year, description, image,
                 trailer, thumbnail, movieId, nameRU, nameEN,
@@ -34,7 +33,7 @@ class MainApi {
     deleteMovie = (movieId) => {
         return fetch(`${this._apiUrl}/movies/${movieId}`, {
             method: 'DELETE',
-            headers: this._headers,
+            headers: getHeaders(),
         })
             .then(this._checkResponse);
     }
@@ -42,7 +41,7 @@ class MainApi {
     register = ({name, email, password}) => {
         return fetch(`${this._apiUrl}/signup`, {
             method: 'POST',
-            headers: this._headers,
+            headers: getHeaders(),
             body: JSON.stringify({
                 name,
                 email,
@@ -55,7 +54,7 @@ class MainApi {
     login = ({email, password}) => {
         return fetch(`${this._apiUrl}/signin`, {
             method: 'POST',
-            headers: this._headers,
+            headers: getHeaders(),
             body: JSON.stringify({
                 email,
                 password,
@@ -68,7 +67,7 @@ class MainApi {
         return fetch(`${this._apiUrl}/users/me`,
             {
                 method: 'GET',
-                headers: this._headers,
+                headers: getHeaders(),
             })
             .then(this._checkResponse);
     }
@@ -77,7 +76,7 @@ class MainApi {
         return fetch(`${this._apiUrl}/users/me`,
             {
                 method: 'PATCH',
-                headers: this._headers,
+                headers: getHeaders(),
                 body: JSON.stringify({
                     name: name,
                     email: email,
@@ -87,12 +86,15 @@ class MainApi {
     }
 }
 
-const mainApi = new MainApi({
-    apiUrl: 'http://localhost:3001/api/',
-    headers: {
+function getHeaders() {
+    return {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     }
+}
+
+const mainApi = new MainApi({
+    apiUrl: 'http://localhost:3001/api/',
 });
 
 export default mainApi;

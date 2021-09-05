@@ -74,6 +74,7 @@ function App() {
 
     const handleLogout = () => {
         localStorage.removeItem('jwt');
+        console.log(localStorage.getItem('jwt'))
         setCurrentUser({});
         setLoggedIn(false);
         history.push('/');
@@ -84,6 +85,7 @@ function App() {
         mainApi.getUserInfo()
             .then(data => {
                 setUserData(data);
+                console.log(data)
             })
             .catch(err => {
                 console.log(err);
