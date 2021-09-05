@@ -16,10 +16,10 @@ class MainApi {
             .then(this._checkResponse);
     };
 
-    createMovie = ({
+    createMovie = (
             country, director, duration, year, description, image,
             trailer, thumbnail, movieId, nameRU, nameEN,
-        }) => {
+        ) => {
         return fetch(`${this._apiUrl}/movies`, {
             method: 'POST',
             headers: this._headers,
@@ -31,7 +31,7 @@ class MainApi {
             .then(this._checkResponse);
     };
 
-    deleteMovie = ({movieId}) => {
+    deleteMovie = (movieId) => {
         return fetch(`${this._apiUrl}/movies/${movieId}`, {
             method: 'DELETE',
             headers: this._headers,

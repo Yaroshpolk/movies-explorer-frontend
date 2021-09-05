@@ -2,13 +2,27 @@ import './SavedMovies.css';
 import React from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import {AppContext} from "../../contexts/AppContext";
 
-function SavedMovies() {
+function SavedMovies(props) {
+
+    const context = React.useContext(AppContext);
 
     return (
         <div className='content'>
-            <SearchForm />
-            <MoviesCardList btnClass={'del'}/>
+            <SearchForm
+                handleSearch={props.handleSearch}
+            setShortMovies={props.setShortMovies}
+            />
+
+            {context.savedMovies && (
+                <MoviesCardList
+                    btnClass={'del'}
+                    checkLike={props.checkLike}
+                    onMovieDislike={props.handleCardDelete}
+                />
+            )}
+
         </div>
     );
 }
