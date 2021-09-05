@@ -50,9 +50,7 @@ function App() {
                 localStorage.setItem('savedMovies', JSON.stringify(movies))
             })
             .catch(err => {
-                setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
-                    type: 'error',})
-                setIsPopupOpened(true)
+                console.log(err)
             })
     }, [loggedIn])
 
@@ -95,7 +93,7 @@ function App() {
             .catch(err => {
                 setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
                     type: 'error',})
-                setIsPopupOpened(true)
+                openPopup();
             })
     }
 
@@ -113,7 +111,7 @@ function App() {
             .catch(err => {
                 setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
                     type: 'error',})
-                setIsPopupOpened(true)
+                openPopup();
             })
     }
 
@@ -135,7 +133,7 @@ function App() {
             .catch(err => {
                 setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
                     type: 'error',})
-                setIsPopupOpened(true)
+                openPopup();
             })
             .finally(() => {
                 setIsLoading(false);
@@ -170,14 +168,14 @@ function App() {
                 })
                 setPopupInfo({title: 'Ваш профиль успешно отредактирован',
                     type: '',})
-                setIsPopupOpened(true)
+                openPopup();
                 getUserInfo();
                 onSuccess();
             })
             .catch(err => {
                 setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
                     type: 'error',})
-                setIsPopupOpened(true)
+                openPopup();
             })
             .finally(() => {
                 setIsLoading(false);
@@ -195,7 +193,7 @@ function App() {
                 .catch(err => {
                     setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
                         type: 'error',})
-                    setIsPopupOpened(true)
+                    openPopup();
                 })
                 .finally(() => {
                     setIsLoading(false);
@@ -207,7 +205,7 @@ function App() {
       if (!key) {
           setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
               type: 'error',})
-          setIsPopupOpened(true)
+          openPopup();
           return;
       }
       const moviesList = JSON.parse(localStorage.getItem('movies'));
@@ -230,7 +228,7 @@ function App() {
         if (!key) {
             setPopupInfo({title: 'Необходимо ввести ключевое слово',
                 type: 'error',})
-            setIsPopupOpened(true)
+            openPopup();
             return;
         }
         const savedMoviesList = JSON.parse(localStorage.getItem('savedMovies'));
@@ -314,7 +312,7 @@ function App() {
             .catch((err) => {
                 setPopupInfo({title: 'Во время обработки запроса произошла ошибка. Попробуйте ещё раз',
                     type: 'error',})
-                setIsPopupOpened(true)
+                openPopup();
             });
     }
 
