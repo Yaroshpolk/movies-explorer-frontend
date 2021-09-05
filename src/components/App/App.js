@@ -117,7 +117,9 @@ function App() {
 
     const handleLogout = () => {
         localStorage.removeItem('jwt');
-        console.log(localStorage.getItem('jwt'))
+        setSavedMovies([]);
+        setSavedShortMovies(false);
+        setMovies([]);
         setCurrentUser({});
         setLoggedIn(false);
         history.push('/');
