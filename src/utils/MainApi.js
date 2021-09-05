@@ -10,6 +10,7 @@ class MainApi {
     getSavedMovies = () => {
         return fetch(`${this._apiUrl}/movies`, {
             method: 'GET',
+            credentials: 'include',
             headers: getHeaders(),
         })
             .then(this._checkResponse);
@@ -21,6 +22,7 @@ class MainApi {
         ) => {
         return fetch(`${this._apiUrl}/movies`, {
             method: 'POST',
+            credentials: 'include',
             headers: getHeaders(),
             body: JSON.stringify(
                 country, director, duration, year, description, image,
@@ -33,6 +35,7 @@ class MainApi {
     deleteMovie = (movieId) => {
         return fetch(`${this._apiUrl}/movies/${movieId}`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: getHeaders(),
         })
             .then(this._checkResponse);
@@ -41,6 +44,7 @@ class MainApi {
     register = ({name, email, password}) => {
         return fetch(`${this._apiUrl}/signup`, {
             method: 'POST',
+            credentials: 'include',
             headers: getHeaders(),
             body: JSON.stringify({
                 name,
@@ -54,6 +58,7 @@ class MainApi {
     login = ({email, password}) => {
         return fetch(`${this._apiUrl}/signin`, {
             method: 'POST',
+            credentials: 'include',
             headers: getHeaders(),
             body: JSON.stringify({
                 email,
@@ -67,6 +72,7 @@ class MainApi {
         return fetch(`${this._apiUrl}/users/me`,
             {
                 method: 'GET',
+                credentials: 'include',
                 headers: getHeaders(),
             })
             .then(this._checkResponse);
@@ -76,6 +82,7 @@ class MainApi {
         return fetch(`${this._apiUrl}/users/me`,
             {
                 method: 'PATCH',
+                credentials: 'include',
                 headers: getHeaders(),
                 body: JSON.stringify({
                     name: name,
