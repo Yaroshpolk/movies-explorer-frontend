@@ -1,13 +1,11 @@
 import React from "react";
 import './Navigation.css';
 import { Link, NavLink } from "react-router-dom";
+import { AppContext } from '../../contexts/AppContext';
 
 function Navigation() {
-    const [isLogged, setIsLogged] = React.useState(false);
 
-    React.useState(() => {
-        setIsLogged(true);
-    })
+    const context = React.useContext(AppContext);
 
     function burgerMenuAction () {
         document.querySelector('.burger-menu').classList.toggle('burger-menu_visible')
@@ -17,7 +15,7 @@ function Navigation() {
         <>
             <nav className='navigation'>
                 <div className="navigation__links">
-                    {isLogged && (
+                    {context.loggedIn && (
                         <>
                             <NavLink to='/movies' className='link' activeClassName='link_active'>
                                 Фильмы
@@ -29,7 +27,7 @@ function Navigation() {
                     )}
                 </div>
 
-                {isLogged ? (
+                {context.loggedIn ? (
                     <div className="navigation__user-links">
                         <NavLink to='/profile' className='link' activeClassName='link_active'>
                             Аккаунт
@@ -49,7 +47,7 @@ function Navigation() {
                     </div>
                 )}
             </nav>
-            {isLogged && (
+            {context.loggedIn && (
                 <nav className="navigation_mob">
                     <button className="btn navigation_mob__burger-btn" onClick={burgerMenuAction}>
                     </button>

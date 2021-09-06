@@ -63,10 +63,6 @@
     box-shadow: 0 0 3px 2px #4285F4;
 }
 
-.input_error {
-    color: #EE3465;
-}
-
 .field {
     margin-bottom: 20px;
     display: flex;
@@ -97,6 +93,11 @@
     margin: 69px auto 16px auto;
 }
 
+.submit__disabled {
+    pointer-events: none;
+    opacity: .3;
+}
+
 .form__underSubm-link {
     font-weight: normal;
     font-size: 14px;
@@ -121,12 +122,16 @@
     line-height: 12px;
     margin-top: 10px;
     letter-spacing: normal;
+    width: 100%;
 }
 
-.field__input-error_visible {
+.field_invalid .field__input-error {
     display: block;
 }
 
+.field_invalid .input {
+    color: #EE3465;
+}
 
 @media screen and (max-width: 786px){
     .field .field__preinput-span {

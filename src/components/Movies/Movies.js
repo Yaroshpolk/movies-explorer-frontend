@@ -2,19 +2,28 @@ import './Movies.css';
 import React from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader";
+import {AppContext} from "../../contexts/AppContext";
 
-function Movies() {
+function Movies(props) {
 
-    const addToFavorite = (evt) => {
-        const btn = evt.target;
-
-        btn.classList.toggle('movies__card-btn_active');
-    }
+    const context = React.useContext(AppContext);
 
     return (
         <div className='content'>
-            <SearchForm />
-            <MoviesCardList btnClass={'addToFav'} btnAction={ addToFavorite } moreBtn={true}/>
+                <SearchForm
+                handleSearch={props.handleSearch}
+                setShortMovies={props.setShortMovies}
+                />
+                {context.isLoading && <Preloader/>}
+                {context.movies && (
+                    <MoviesCardList
+                        btnClass={'addToFav'}
+                        onMovieLike={ props.handleCardLike }
+                        onMovieDislike={ props.handleMovieDelete }
+                        checkLike={props.checkLike}
+                    />
+                )}
         </div>
     );
 }

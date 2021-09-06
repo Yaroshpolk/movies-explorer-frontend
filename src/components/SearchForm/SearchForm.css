@@ -47,6 +47,11 @@
     margin-left: auto;
 }
 
+.search__submit_disabled {
+    pointer-events: none;
+    opacity: .3;
+}
+
 @media screen and (max-width: 786px){
     .search {
         padding: 80px 30px 120px 30px;
